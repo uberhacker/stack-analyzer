@@ -8,7 +8,7 @@ $ sudo cp stack-analyzer/stack-analyzer /usr/local/bin
 ```
 ### Usage:
 ```
-stack-analyzer
+$ stack-analyzer
 ```
 ### Sample output:
 ```
