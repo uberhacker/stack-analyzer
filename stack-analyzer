@@ -9,6 +9,12 @@ if [ ! -z "$APACHE" ]; then
   MINOR=$(echo $APACHE | cut -d'.' -f2)
   echo "apache: $MAJOR.$MINOR"
 fi
+HTTPD=$(httpd -v 2> /dev/null | head -1 | cut -d'/' -f2 | cut -d' ' -f1)
+if [ ! -z "$HTTPD" ]; then
+  MAJOR=$(echo $HTTPD | cut -d'.' -f1)
+  MINOR=$(echo $HTTPD | cut -d'.' -f2)
+  echo "apache: $MAJOR.$MINOR"
+fi
 MYSQL=$(mysql -V 2> /dev/null | xargs | cut -d',' -f1 | cut -d' ' -f5)
 if [ ! -z "$MYSQL" ]; then
   MAJOR=$(echo $MYSQL | cut -d'.' -f1)
