@@ -1,0 +1,32 @@
+#!/bin/bash
+LSB=$(lsb_release -a 2> /dev/null)
+if [ ! -z "$LSB" ]; then
+  lsb_release -a
+fi
+APACHE=$(apache2 -v 2> /dev/null | head -1 | cut -d'/' -f2 | cut -d' ' -f1)
+if [ ! -z "$APACHE" ]; then
+  MAJOR=$(echo $APACHE | cut -d'.' -f1)
+  MINOR=$(echo $APACHE | cut -d'.' -f2)
+  echo "apache: $MAJOR.$MINOR"
+fi
+MYSQL=$(mysql -V 2> /dev/null | xargs | cut -d',' -f1 | cut -d' ' -f5)
+if [ ! -z "$MYSQL" ]; then
+  MAJOR=$(echo $MYSQL | cut -d'.' -f1)
+  MINOR=$(echo $MYSQL | cut -d'.' -f2)
+  echo "mysql: $MAJOR.$MINOR"
+fi
+CMD=$(command -v nginx 2> /dev/null)
+if [ ! -z "$CMD" ]; then
+  NGINX=$(nginx -v | cut -d'/' -f2)
+  if [ ! -z "$NGINX" ]; then
+    MAJOR=$(echo $NGINX | cut -d'.' -f1)
+    MINOR=$(echo $NGINX | cut -d'.' -f2)
+    echo "nginx: $MAJOR.$MINOR"
+  fi
+fi
+PHP=$(php -v 2> /dev/null | head -1 | cut -d'-' -f1 | cut -d' ' -f2)
+if [ ! -z "$PHP" ]; then
+  MAJOR=$(echo $PHP | cut -d'.' -f1)
+  MINOR=$(echo $PHP | cut -d'.' -f2)
+  echo "php: $MAJOR.$MINOR"
+fi
